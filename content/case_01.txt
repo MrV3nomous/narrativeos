@@ -1,0 +1,27 @@
+# SCENE: WAREHOUSE_START
+
+@emit UI:THEME_ALERT
+
+agent_lucio:
+Command, I am at the door.
+
+- [Kick it open] -> SCENE: DOOR_BREACH
+- [Check the lock] -> SCENE: LOCK_CHECK
+
+# SCENE: LOCK_CHECK
+
+@emit UI:SCANNER_ACTIVE
+
+agent_lucio:
+It's a biometric scanner. Standard cartel tech. I need an override code.
+
+- [Return to the door] -> SCENE: WAREHOUSE_START
+
+# SCENE: DOOR_BREACH
+
+@emit UI:THEME_DANGER
+
+agent_lucio:
+Door is down! Oh no... Command, we have a problem. They knew we were coming.
+
+- [Abort mission] -> SCENE: WAREHOUSE_START

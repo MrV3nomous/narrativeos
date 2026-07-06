@@ -1,0 +1,68 @@
+{
+  "engine": "2.0.0",
+  "scenes": {
+    "WAREHOUSE_START": {
+      "instructions": [
+        {
+          "type": "emit",
+          "event": "UI:THEME_ALERT"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "agent_lucio",
+          "text": "Command, I am at the door."
+        },
+        {
+          "type": "choice",
+          "text": "Kick it open",
+          "isPrompt": false,
+          "target": "DOOR_BREACH"
+        },
+        {
+          "type": "choice",
+          "text": "Check the lock",
+          "isPrompt": false,
+          "target": "LOCK_CHECK"
+        }
+      ]
+    },
+    "LOCK_CHECK": {
+      "instructions": [
+        {
+          "type": "emit",
+          "event": "UI:SCANNER_ACTIVE"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "agent_lucio",
+          "text": "It's a biometric scanner. Standard cartel tech. I need an override code."
+        },
+        {
+          "type": "choice",
+          "text": "Return to the door",
+          "isPrompt": false,
+          "target": "WAREHOUSE_START"
+        }
+      ]
+    },
+    "DOOR_BREACH": {
+      "instructions": [
+        {
+          "type": "emit",
+          "event": "UI:THEME_DANGER"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "agent_lucio",
+          "text": "Door is down! Oh no... Command, we have a problem. They knew we were coming."
+        },
+        {
+          "type": "choice",
+          "text": "Abort mission",
+          "isPrompt": false,
+          "target": "WAREHOUSE_START"
+        }
+      ]
+    }
+  }
+}
