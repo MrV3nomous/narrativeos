@@ -1,4 +1,3 @@
-// src/components/Login.jsx
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
@@ -21,7 +20,7 @@ export default function Login() {
                 : await supabase.auth.signInWithPassword({ email, password });
 
             if (error) throw error;
-            if (!isSignUp) navigate('/studio'); // Send to studio on login
+            if (!isSignUp) navigate('/studio');
         } catch (err) {
             setError(err.message);
         } finally {
@@ -31,7 +30,6 @@ export default function Login() {
 
     return (
         <div className="h-screen w-screen bg-black font-mono overflow-hidden relative flex items-center justify-center p-4">
-            {/* Background Effects */}
             <div className="absolute inset-0 z-0 bg-tactical-grid opacity-60 pointer-events-none" />
             <div className="absolute inset-0 z-10 bg-noise pointer-events-none" />
             <div className="absolute inset-0 z-10 vignette pointer-events-none" />
@@ -39,9 +37,7 @@ export default function Login() {
                 <div className="h-[1px] w-full bg-cyan-500 animate-scanline shadow-[0_0_20px_#06b6d4] opacity-70" />
             </div>
 
-            {/* Login Terminal */}
             <div className="relative z-30 w-full max-w-md backdrop-blur-xl bg-black/80 border border-cyan-500/50 shadow-[0_0_30px_rgba(6,182,212,0.2)] flex flex-col">
-                {/* Terminal Header */}
                 <div className="p-4 border-b border-cyan-500/50 bg-gradient-to-r from-white/[0.03] to-transparent flex justify-between items-center relative">
                     <div className="absolute top-0 left-0 w-1 h-full bg-cyan-500" />
                     <div>
@@ -50,7 +46,6 @@ export default function Login() {
                     </div>
                 </div>
 
-                {/* Auth Form */}
                 <form className="p-6 flex flex-col gap-6">
                     {error && (
                         <div className="p-3 border border-red-500/50 bg-red-500/10 text-red-400 text-xs tracking-widest uppercase animate-pulse">

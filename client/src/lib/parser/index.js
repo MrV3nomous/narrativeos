@@ -1,4 +1,3 @@
-// src/lib/parser/index.js
 import { normalizeText } from './normalizer';
 import { detectFormat } from './formatDetector';
 import { tokenize } from './tokenizer';
@@ -37,7 +36,6 @@ export function parseDocument(rawText) {
         };
     } catch (error) {
         console.error("Critical Parser Error:", error);
-        // Fallback safe payload
         return {
             document: { type: 'doc', content: [{ type: 'paragraph' }] },
             entities: { characters: [], scenes: [] },

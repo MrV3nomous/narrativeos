@@ -1,4 +1,3 @@
-// src/components/StoryPanel.jsx
 import React from 'react';
 
 export default function StoryPanel({ activeNode, storyMap, editor, projectName }) {
@@ -25,7 +24,6 @@ export default function StoryPanel({ activeNode, storyMap, editor, projectName }
 
     const updateNode = (attrs) => {
         if (editor) {
-            // CRITICAL FIX: Do NOT use .focus() here. It steals focus from the input fields!
             editor.commands.updateAttributes(activeNode.type.name, attrs);
         }
     };
@@ -37,7 +35,6 @@ export default function StoryPanel({ activeNode, storyMap, editor, projectName }
     };
 
     const updateEffect = (index, field, newValue) => {
-        // Deep clone to ensure React state registers the change
         const updated = currentEffects.map((effect, i) =>
             i === index ? { ...effect, [field]: newValue.toUpperCase().replace(/\s+/g, '_') } : effect
         );

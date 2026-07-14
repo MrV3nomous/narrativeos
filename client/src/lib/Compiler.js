@@ -69,13 +69,13 @@ export function compileDocumentToKernel(documentModel) {
                     if (innerBlock.type === 'decision') {
                         const text = extractText(innerBlock);
                         const target = innerBlock.attrs?.targetId || null;
-                        const effects = innerBlock.attrs?.effects || []; // EXTRACT EFFECTS
+                        const effects = innerBlock.attrs?.effects || [];
 
                         kernel.scenes[currentSceneId].instructions.push({
                             type: 'choice',
                             text: text || '[EMPTY CHOICE]',
                             target: target,
-                            effects: effects // INJECT INTO KERNEL
+                            effects: effects
                         });
                     }
                 });
@@ -86,13 +86,13 @@ export function compileDocumentToKernel(documentModel) {
         if (block.type === 'decision') {
             const text = extractText(block);
             const target = block.attrs?.targetId || null;
-            const effects = block.attrs?.effects || []; // EXTRACT EFFECTS
+            const effects = block.attrs?.effects || [];
 
             kernel.scenes[currentSceneId].instructions.push({
                 type: 'choice',
                 text: text || '[EMPTY CHOICE]',
                 target: target,
-                effects: effects // INJECT INTO KERNEL
+                effects: effects
             });
             return;
         }

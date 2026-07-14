@@ -1,4 +1,3 @@
-// src/lib/parser/tokenizer.js
 export function tokenize(text, format) {
     const lines = text.split('\n');
     const tokens = [];
@@ -20,7 +19,6 @@ export function tokenize(text, format) {
             return;
         }
 
-        // AUTO-PARSE BRANCHES & EFFECTS: > Choice Text -> SCENE_NAME [VAR=VALUE]
         const branchMatch = trimmed.match(/^>\s*(.*?)(?:\s*->\s*([^\[]*?))?(?:\s*\[(.*?)\])?$/);
         if (branchMatch) {
             tokens.push({

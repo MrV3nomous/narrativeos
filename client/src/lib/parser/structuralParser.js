@@ -1,5 +1,3 @@
-// src/lib/parser/structuralParser.js
-
 function generateStableId(content, index) {
     let hash = 0;
     const str = `${content}_${index}_${Date.now().toString(36).slice(-4)}`;
@@ -74,7 +72,6 @@ export function buildAST(tokens) {
                     content: token.text ? [{ type: 'text', text: token.text }] : undefined
                 };
 
-                // FIX: Keep the decision inside the dialogue block if someone is speaking!
                 if (activeDialogueNode) {
                     activeDialogueNode.content.push(decNode);
                 } else {

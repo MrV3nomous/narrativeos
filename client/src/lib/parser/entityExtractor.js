@@ -1,4 +1,3 @@
-// src/lib/parser/entityExtractor.js
 export function extractEntities(ast) {
     const entities = {
         characters: new Set(),

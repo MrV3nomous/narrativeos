@@ -1,4 +1,3 @@
-// src/lib/parser/normalizer.js
 export function normalizeText(rawText) {
     if (typeof rawText !== 'string' || !rawText) return '';
 

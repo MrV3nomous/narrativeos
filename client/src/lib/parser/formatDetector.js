@@ -1,8 +1,7 @@
-// src/lib/parser/formatDetector.js
 export function detectFormat(text) {
     if (typeof text !== 'string') return { format: 'STANDARD_PROSE', confidence: 0.99 };
 
-    const sample = text.slice(0, 5000); // Expanded sample window slightly for better detection
+    const sample = text.slice(0, 5000);
 
     const sceneHeaders = (sample.match(/^(INT\.|EXT\.|FADE IN:|---)/gm) || []).length;
     const dialogueBlocks = (sample.match(/^([A-Z0-9 \-_']+):\s/gm) || []).length;

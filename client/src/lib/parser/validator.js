@@ -1,4 +1,3 @@
-// src/lib/parser/validator.js
 export function validateAST(ast, entities) {
     const diagnostics = [];
     const knownSceneIds = new Set((entities?.scenes || []).map(s => s.id));

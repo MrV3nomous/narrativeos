@@ -1,24 +1,19 @@
-// src/App.jsx
 import { useState } from 'react'
 import Editor from './components/Editor'
 import Engine from './components/Engine'
 
 function App() {
-  // Navigation State
   const [activeModule, setActiveModule] = useState('editor')
 
-  // Global Engine Memory (Holds the compiled JSON)
   const [kernelData, setKernelData] = useState(null)
 
   return (
     <div className="h-screen w-screen bg-[#010204] font-mono overflow-hidden relative selection:bg-cyan-900 selection:text-white flex">
 
-      {/* GLOBAL FX LAYERS */}
       <div className="absolute inset-0 z-0 bg-tactical-grid opacity-60 pointer-events-none" />
       <div className="absolute inset-0 z-0 bg-noise pointer-events-none" />
       <div className="absolute inset-0 z-0 vignette pointer-events-none" />
 
-      {/* HARDWARE SIDEBAR NAVIGATION */}
       <div className="relative z-20 w-16 lg:w-20 h-full bg-black/90 border-r border-white/10 flex flex-col items-center py-6 gap-8 backdrop-blur-xl shrink-0">
         <div className="w-8 h-8 border-2 border-cyan-500 rounded-sm flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
           <span className="text-cyan-500 font-bold text-xs">OS</span>
@@ -44,13 +39,10 @@ function App() {
         </div>
       </div>
 
-      {/* ACTIVE MODULE VIEWPORT */}
       <div className="relative z-10 flex-1 h-full min-w-0">
         {activeModule === 'editor' && (
           <Editor
             onCompile={(data) => {
-              // FIX: Only update the background memory! 
-              // Do NOT use setActiveModule('engine') here!
               setKernelData(data);
             }}
           />

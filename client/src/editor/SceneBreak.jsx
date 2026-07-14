@@ -1,10 +1,8 @@
-// src/editor/SceneBreak.jsx
 import { Node, mergeAttributes, InputRule } from '@tiptap/core';
 import { ReactNodeViewRenderer, NodeViewWrapper } from '@tiptap/react';
 
 const SceneBreakView = ({ node, updateAttributes }) => {
     return (
-        // FIX: Injected data-scene-id so the DOM can target it for scrolling
         <NodeViewWrapper className="my-12 relative group" contentEditable={false} data-scene-id={node.attrs.sceneId}>
             <div className="flex items-center gap-4">
                 <div className="h-px bg-cyan-900/50 flex-1 group-hover:bg-cyan-700/50 transition-colors" />

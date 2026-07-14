@@ -7,5 +7,4 @@ if (!supabaseUrl || !supabaseAnonKey) {
     throw new Error('Missing Supabase environment variables. Check your .env.local file.');
 }
 
-// 2. Initialize and export the singleton client
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);

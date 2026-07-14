@@ -1,4 +1,3 @@
-// src/components/EditorCanvas.jsx
 import { useState, useRef, useEffect } from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
@@ -128,7 +127,6 @@ export default function EditorCanvas({ onUpdate, onEditorReady, onSelectionChang
 
     if (!editor) return null;
 
-    // Set decision and conditionally inject a base effect
     const setDecision = (withEffect = false) => {
         if (withEffect) {
             editor.chain().focus().setNode('decision', { effects: [{ key: 'NEW_VAR', value: 'TRUE' }] }).run();

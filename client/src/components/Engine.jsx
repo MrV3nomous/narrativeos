@@ -22,7 +22,6 @@ export default function Engine({ engineData }) {
         return () => clearInterval(timer)
     }, [])
 
-    // Auto-boot when data is received
     useEffect(() => {
         if (engineData && engineData.scenes) {
             const availableScenes = Object.keys(engineData.scenes);
@@ -80,7 +79,6 @@ export default function Engine({ engineData }) {
 
     return (
         <div className="h-full w-full flex flex-col lg:flex-row p-2 lg:p-4 gap-2 lg:gap-4 box-border relative">
-            {/* MOBILE TAB BAR */}
             <div className="flex lg:hidden w-full gap-2 z-20 shrink-0">
                 {['terminal', 'scanner', 'vitals'].map((tab) => (
                     <button key={tab} onClick={() => setMobileTab(tab)} className={`flex-1 py-3 text-[10px] font-bold tracking-[0.2em] uppercase border ${mobileTab === tab ? `bg-${themeColor}-500/20 border-${themeColor}-500 text-${themeColor}-400` : 'bg-black/50 border-white/10 text-zinc-500'}`}>
@@ -89,7 +87,6 @@ export default function Engine({ engineData }) {
                 ))}
             </div>
 
-            {/* LEFT PANEL: VITALS */}
             <div className={`w-full lg:w-[340px] flex-1 lg:flex-none flex-col backdrop-blur-xl bg-black/80 border ${theme.border} ${theme.glow} shrink-0 ${mobileTab === 'vitals' ? 'flex' : 'hidden'} lg:flex`}>
                 <div className={`p-4 lg:p-5 border-b ${theme.border} bg-gradient-to-r from-white/[0.03] to-transparent`}>
                     <p className={`text-[8px] lg:text-[9px] tracking-[0.5em] text-zinc-500 mb-1`}>CORE_SYSTEM</p>
@@ -101,16 +98,13 @@ export default function Engine({ engineData }) {
                 </div>
             </div>
 
-            {/* RIGHT SIDE CONTAINER */}
             <div className={`flex-1 flex-col gap-2 lg:gap-4 h-full min-h-0 w-full ${mobileTab !== 'vitals' ? 'flex' : 'hidden'} lg:flex`}>
 
-                {/* SCANNER */}
                 <div className={`flex-1 lg:flex-none lg:h-[40%] backdrop-blur-xl bg-black/60 border ${theme.border} flex-col shadow-2xl min-h-0 ${mobileTab === 'scanner' ? 'flex' : 'hidden'} lg:flex`}>
                     <div className={`p-3 border-b border-white/5 text-[9px] tracking-[0.5em] text-zinc-500 px-4`}>VISUAL_UPLINK</div>
                     <div className="flex-1 flex items-center justify-center"><p className={`tracking-[0.8em] text-[10px] font-bold ${theme.text} animate-pulse`}>AWAITING_DATA</p></div>
                 </div>
 
-                {/* TERMINAL */}
                 <div className={`flex-1 lg:flex-none lg:h-[60%] backdrop-blur-xl bg-black/85 border ${theme.border} flex-col shadow-2xl min-h-0 ${mobileTab === 'terminal' ? 'flex' : 'hidden'} lg:flex`}>
                     <div className={`px-4 py-3 border-b border-white/5 flex justify-between`}>
                         <p className="text-[10px] tracking-[0.5em] text-zinc-400 font-bold">SYS_TERMINAL</p>
