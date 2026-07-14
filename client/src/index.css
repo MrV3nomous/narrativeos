@@ -35,6 +35,14 @@ html,
   -webkit-mask-image: radial-gradient(circle at 50% 50%, black 70%, transparent 100%);
 }
 
+.tiptap p.is-editor-empty:first-child::before {
+  color: #52525b;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
 @keyframes scanline {
   0% {
     transform: translateY(-100%);
