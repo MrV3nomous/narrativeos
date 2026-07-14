@@ -2,7 +2,7 @@ import { Node, mergeAttributes } from '@tiptap/core';
 import { ReactNodeViewRenderer, NodeViewWrapper, NodeViewContent } from '@tiptap/react';
 
 const DecisionNodeView = ({ node }) => {
-    const hasEffects = node.attrs.effects && node.attrs.effects.length > 0;
+    const hasEffects = Array.isArray(node.attrs?.effects) && node.attrs.effects.length > 0;
 
     return (
         <NodeViewWrapper className="my-4 flex items-center gap-4 group">

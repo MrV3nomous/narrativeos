@@ -15,7 +15,7 @@ export default function StoryPanel({ activeNode, storyMap, editor, projectName }
                     </div>
                     <div>
                         <label className="block text-[9px] tracking-widest text-zinc-500 mb-2">SCENE_COUNT</label>
-                        <p className="text-2xl text-cyan-500 font-light">{storyMap.length}</p>
+                        <p className="text-2xl text-cyan-500 font-light">{Array.isArray(storyMap) ? storyMap.length : 0}</p>
                     </div>
                 </div>
             </div>
@@ -28,21 +28,22 @@ export default function StoryPanel({ activeNode, storyMap, editor, projectName }
         }
     };
 
-    const currentEffects = activeNode.attrs?.effects || [];
+    const safeEffects = Array.isArray(activeNode.attrs?.effects) ? activeNode.attrs.effects : [];
+    const safeStoryMap = Array.isArray(storyMap) ? storyMap : [];
 
     const addEffect = () => {
-        updateNode({ effects: [...currentEffects, { key: 'NEW_VAR', value: 'TRUE' }] });
+        updateNode({ effects: [...safeEffects, { key: 'NEW_VAR', value: 'TRUE' }] });
     };
 
     const updateEffect = (index, field, newValue) => {
-        const updated = currentEffects.map((effect, i) =>
+        const updated = safeEffects.map((effect, i) =>
             i === index ? { ...effect, [field]: newValue.toUpperCase().replace(/\s+/g, '_') } : effect
         );
         updateNode({ effects: updated });
     };
 
     const removeEffect = (index) => {
-        const updated = currentEffects.filter((_, i) => i !== index);
+        const updated = safeEffects.filter((_, i) => i !== index);
         updateNode({ effects: updated });
     };
 
@@ -100,7 +101,7 @@ export default function StoryPanel({ activeNode, storyMap, editor, projectName }
                             <label className="block text-[10px] tracking-widest text-zinc-400 font-bold">NODE_ROUTING</label>
                         </div>
                         <div className="space-y-2">
-                            {storyMap.map(scene => (
+                            {safeStoryMap.map(scene => (
                                 <button
                                     key={scene.id}
                                     onClick={() => updateNode({ targetId: scene.id, targetName: scene.title })}
@@ -124,7 +125,7 @@ export default function StoryPanel({ activeNode, storyMap, editor, projectName }
                         </div>
 
                         <div className="space-y-2 mb-4">
-                            {currentEffects.map((effect, index) => (
+                            {safeEffects.map((effect, index) => (
                                 <div key={index} className="flex gap-2 items-center bg-[#050505] border border-white/5 p-2 focus-within:border-emerald-500/50 transition-colors">
                                     <input
                                         type="text"
